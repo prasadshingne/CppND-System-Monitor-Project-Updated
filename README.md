@@ -1,15 +1,12 @@
 # CppND-System-Monitor
 
+In this project we build a linux system monitor similar to [htop](https://htop.dev/).
+
 Starter code for System Monitor Project in the Object Oriented Programming Course of the [Udacity C++ Nanodegree Program](https://www.udacity.com/course/c-plus-plus-nanodegree--nd213). 
 
-Follow along with the classroom lesson to complete the project!
+## My Linux System
 
-![System Monitor](images/monitor.png)
-
-## Udacity Linux Workspace
-[Udacity](https://www.udacity.com/) provides a browser-based Linux [Workspace](https://engineering.udacity.com/creating-a-gpu-enhanced-virtual-desktop-for-udacity-497bdd91a505) for students. 
-
-You are welcome to develop this project on your local machine, and you are not required to use the Udacity Workspace. However, the Workspace provides a convenient and consistent Linux development environment we encourage you to try.
+The Udacity provided workspace is very convenient but I developed this project on my local machine - Ubuntu 20.04.2 LTS.
 
 ## ncurses
 [ncurses](https://www.gnu.org/software/ncurses/) is a library that facilitates text-based graphical output in the terminal. This project relies on ncurses for display output.
@@ -32,10 +29,19 @@ This project uses [Make](https://www.gnu.org/software/make/). The Makefile has f
 2. Build the project: `make build`
 
 3. Run the resulting executable: `./build/monitor`
-![Starting System Monitor](images/starting_monitor.png)
 
 4. Follow along with the lesson.
 
 5. Implement the `System`, `Process`, and `Processor` classes, as well as functions within the `LinuxParser` namespace.
 
 6. Submit!
+
+## Result
+
+My system monitor looks like the following:
+
+<img src="./images/my_monitor_2.png" width="720" height="480" />
+
+A snapshot of htop at nearly the same time looks like the following:
+
+<img src="./images/my_htop_2.png" width="720" height="480" />
