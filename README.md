@@ -41,7 +41,3 @@ This project uses [Make](https://www.gnu.org/software/make/). The Makefile has f
 My system monitor looks like the following:
 
 <img src="./images/my_monitor_2.png" width="720" height="480" />
-
-A snapshot of htop at nearly the same time looks like the following:
-
-<img src="./images/my_htop_2.png" width="720" height="480" />
