@@ -111,19 +111,6 @@ long LinuxParser::UpTime() {
   return up_time; 
   }
 
-// TODO: Read and return the number of jiffies for the system
-long LinuxParser::Jiffies() { return 0; }
-
-// TODO: Read and return the number of active jiffies for a PID
-// REMOVE: [[maybe_unused]] once you define the function
-long LinuxParser::ActiveJiffies(int pid[[maybe_unused]]) { return 0; }
-
-// TODO: Read and return the number of active jiffies for the system
-long LinuxParser::ActiveJiffies() { return 0; }
-
-// TODO: Read and return the number of idle jiffies for the system
-long LinuxParser::IdleJiffies() { return 0; }
-
 // Read and return CPU utilization
 // /proc/stat
 // cpu user nice system idle iowait irq softirq steal guest guest_nice
@@ -208,7 +195,7 @@ string LinuxParser::Ram(int pid) {
       std::istringstream linestream(line);
       linestream >> key >> value;
       if(key == "VmSize:"){
-        ram = std::stoi(value)/100;
+        ram = std::stoi(value)/1024; // convert KB to MB
         return to_string(ram);
 
         }
@@ -271,6 +258,9 @@ string LinuxParser::User(int pid) {
 */
 long LinuxParser::UpTime(int pid) {
   string line, value;
+  string kernal_ = LinuxParser::Kernel();
+  long uptime = 0;
+  float ker_ = std::stoi(kernal_.substr(0,2));
   std::ifstream stream(kProcDirectory + to_string(pid) + kStatFilename);
   if(stream.is_open()){
     std::getline(stream, line);
@@ -278,9 +268,15 @@ long LinuxParser::UpTime(int pid) {
     for (int i = 1; i <= 22; ++i){
       linestream >> value;
     }
-    return std::stol(value)/sysconf(_SC_CLK_TCK); 
+    
+    if (ker_ < 2.6){
+      uptime =  LinuxParser::UpTime() - std::stol(value);
+    } else {
+      uptime =  LinuxParser::UpTime() - std::stol(value)/sysconf(_SC_CLK_TCK); 
+    }
+    return uptime; 
   }
-  return std::stol(value)/sysconf(_SC_CLK_TCK); 
+  return uptime; 
 }
 
 // calculate cpu usage per process
