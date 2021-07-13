@@ -268,7 +268,7 @@ long LinuxParser::UpTime(int pid) {
     for (int i = 1; i <= 22; ++i){
       linestream >> value;
     }
-    
+    // calculate uptime based on kernal version
     if (ker_ < 2.6){
       uptime =  LinuxParser::UpTime() - std::stol(value);
     } else {
